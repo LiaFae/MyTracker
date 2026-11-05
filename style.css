@@ -10,28 +10,21 @@ body {
 
 .container {
     background: white;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 300px;
+    width: 320px;
 }
 
-h1 {
-    color: #333;
-    margin-bottom: 10px;
-}
-
-p {
-    color: #666;
-    font-size: 14px;
+.hidden {
+    display: none;
 }
 
 .actions {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-top: 20px;
 }
 
 button {
@@ -42,9 +35,212 @@ button {
     color: white;
     font-size: 16px;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: transform 0.1s, background 0.2s;
 }
 
 button:hover {
-    background-color: #45a049;
+    opacity: 0.9;
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+.step-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.back-btn { background-color: #888; }
+.next-btn { background-color: #2196F3; }
+.save-btn { background-color: #4CAF50; }
+
+/* 1. Θερμοκρασία */
+.temp-container {
+    margin: 20px 0;
+}
+
+#tempIcon {
+    font-size: 45px;
+    display: block;
+    margin-bottom: 10px;
+    transition: transform 0.2s;
+}
+
+input[type=range] {
+    width: 100%;
+    accent-color: #2196F3;
+    height: 8px;
+    cursor: pointer;
+}
+
+/* 2. Διάθεση (Mood) */
+.mood-palette {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    justify-items: center;
+    margin: 20px 0;
+}
+
+.mood-btn {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+/* 3. Ποτήρι Νερού */
+.glass-container {
+    width: 100px;
+    height: 130px;
+    border: 4px solid #333;
+    border-top: none;
+    border-radius: 0 0 15px 15px;
+    margin: 15px auto;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    background-color: #fafafa;
+}
+
+.water {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 0%;
+    background-color: #2196F3;
+    transition: height 0.3s ease;
+}
+
+.glass-text {
+    position: absolute;
+    width: 100%;
+    top: 40%;
+    left: 0;
+    font-weight: bold;
+    color: #333;
+    z-index: 2;
+}
+
+.steps-container {
+    margin-top: 15px;
+}
+
+.steps-container input {
+    padding: 8px;
+    width: 80px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+/* Στυλ Ιστορικού / Φιδάκια & Λίμνη */
+.month-selector {
+    margin-bottom: 15px;
+}
+
+.month-selector input {
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.tracker-section {
+    margin: 8px 0;
+    text-align: left;
+}
+
+.tracker-section h3 {
+    font-size: 13px;
+    margin-bottom: 4px;
+    color: #444;
+}
+
+.snake-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    background: #eef2f5;
+    padding: 8px;
+    border-radius: 12px;
+}
+
+.snake-segment {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: bold;
+    color: #444;
+}
+
+/* Λίμνη με το βατραχάκι μέσα */
+.pond-container {
+    display: flex;
+    justify-content: center;
+    margin: 12px 0;
+}
+
+.pond {
+    width: 180px;
+    height: 85px;
+    background-color: #bbdefb;
+    border-radius: 45px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #64b5f6;
+}
+
+.pond-water {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 0%;
+    background-color: #2196f3;
+    transition: height 0.5s ease;
+    opacity: 0.7;
+}
+
+.pond-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+}
+
+.lily-pad {
+    font-size: 18px;
+}
+
+#pondText {
+    font-size: 11px;
+    font-weight: bold;
+    color: #0d47a1;
+}
+
+#frogSteps {
+    font-size: 10px;
+    font-weight: bold;
+    color: #1b5e20;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 1px 6px;
+    border-radius: 10px;
 }

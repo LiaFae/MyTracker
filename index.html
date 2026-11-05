@@ -9,11 +9,94 @@
 <body>
     <div class="container">
         <h1>MyTracker</h1>
-        <p>Καλώς ήρθατε στο MyTracker Web!</p>
-        
-        <div class="actions">
-            <button id="btnRecord">Καταγραφή</button>
-            <button id="btnHistory">Ιστορικό</button>
+
+        <!-- Αρχική Οθόνη Επιλογών -->
+        <div id="mainMenu" class="screen">
+            <div class="actions">
+                <button id="btnStartLog" onclick="showStep(1)">Καταγραφή Σήμερα</button>
+                <button id="btnHistory" onclick="openHistory()">Ιστορικό</button>
+            </div>
+        </div>
+
+        <!-- ΒΗΜΑ 1: Θερμοκρασία -->
+        <div id="step1" class="screen hidden">
+            <h2>1. Θερμοκρασία & Καιρός</h2>
+            <div class="temp-container">
+                <span id="tempIcon">🌡️</span>
+                <input type="range" id="tempSlider" min="0" max="40" value="20" oninput="updateTempUI()">
+                <p id="tempValue">20°C</p>
+            </div>
+            <button class="next-btn" onclick="showStep(2)">Επόμενο (Διάθεση) ➔</button>
+        </div>
+
+        <!-- ΒΗΜΑ 2: Μετρητής Διάθεσης -->
+        <div id="step2" class="screen hidden">
+            <h2>2. Πώς νιώθεις σήμερα;</h2>
+            <div class="mood-palette">
+                <button class="mood-btn" style="background-color: #FFD700;" onclick="selectMood('Χαρούμενος/η', '#FFD700')">😊</button>
+                <button class="mood-btn" style="background-color: #4682B4;" onclick="selectMood('Ήρεμος/η', '#4682B4')">😌</button>
+                <button class="mood-btn" style="background-color: #32CD32;" onclick="selectMood('Ενεργητικός/η', '#32CD32')">⭐</button>
+                <button class="mood-btn" style="background-color: #9370DB;" onclick="selectMood('Κουρασμένος/η', '#9370DB')">😴</button>
+                <button class="mood-btn" style="background-color: #FF69B4;" onclick="selectMood('Μελαγχολικός/η', '#FF69B4')">💧</button>
+                <button class="mood-btn" style="background-color: #FF4500;" onclick="selectMood('Εκνευρισμένος/η', '#FF4500')">😠</button>
+            </div>
+            <p id="selectedMoodText">Επίλεξε διάθεση</p>
+            <div class="step-nav">
+                <button class="back-btn" onclick="showStep(1)">⬅ Πίσω</button>
+                <button class="next-btn" onclick="showStep(3)">Επόμενο (Νερό & Βήματα) ➔</button>
+            </div>
+        </div>
+
+        <!-- ΒΗΜΑ 3: Νερό & Βήματα -->
+        <div id="step3" class="screen hidden">
+            <h2>3. Νερό & Βήματα</h2>
+            
+            <div class="glass-container" onclick="addWater()">
+                <div id="waterLevel" class="water"></div>
+                <span class="glass-text">🥛 <span id="waterCount">0</span> ποτήρια</span>
+            </div>
+
+            <div class="steps-container">
+                <label for="stepInput">Βήματα:</label>
+                <input type="number" id="stepInput" placeholder="π.χ. 5000">
+            </div>
+
+            <div class="step-nav">
+                <button class="back-btn" onclick="showStep(2)">⬅ Πίσω</button>
+                <button class="save-btn" onclick="finishLogging()">Ολοκλήρωση</button>
+            </div>
+        </div>
+
+        <!-- ΟΘΟΝΗ ΙΣΤΟΡΙΚΟΥ (GRAPHICAL HISTORY) -->
+        <div id="historyScreen" class="screen hidden">
+            <h2>Ιστορικό Μήνα</h2>
+            
+            <div class="month-selector">
+                <input type="month" id="historyMonthPicker" onchange="renderHistory()">
+            </div>
+
+            <div class="tracker-section">
+                <h3>🌡️ Θερμοκρασίες</h3>
+                <div id="tempSnake" class="snake-container"></div>
+            </div>
+
+            <div class="tracker-section">
+                <h3>😊 Διαθέσεις</h3>
+                <div id="moodSnake" class="snake-container"></div>
+            </div>
+
+            <div class="pond-container">
+                <div class="pond">
+                    <div id="pondWater" class="pond-water"></div>
+                    <div class="pond-content">
+                        <span class="lily-pad">🐸 🪷</span>
+                        <span id="pondText">💧 0 L</span>
+                        <span id="frogSteps">0 βήματα</span>
+                    </div>
+                </div>
+            </div>
+
+            <button class="back-btn" onclick="showStep(0)" style="margin-top: 15px;">⬅ Πίσω</button>
         </div>
     </div>
 
