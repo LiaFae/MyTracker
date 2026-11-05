@@ -1,0 +1,1 @@
+console.log("Το MyTracker Web είναι έτοιμο!");
