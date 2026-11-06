@@ -4,7 +4,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
 }
 
@@ -15,11 +15,38 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     text-align: center;
     width: 320px;
+    position: relative;
 }
 
-.hidden {
-    display: none;
+.auth-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
 }
+
+.auth-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+    border-radius: 6px;
+}
+
+.auth-btn.login { background-color: #4285F4; }
+.auth-btn.logout { background-color: #e0e0e0; color: #333; }
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+}
+
+.user-info img {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+}
+
+.hidden { display: none; }
 
 .actions {
     display: flex;
@@ -38,13 +65,8 @@ button {
     transition: transform 0.1s, background 0.2s;
 }
 
-button:hover {
-    opacity: 0.9;
-}
-
-button:active {
-    transform: scale(0.98);
-}
+button:hover { opacity: 0.9; }
+button:active { transform: scale(0.98); }
 
 .step-nav {
     display: flex;
@@ -56,16 +78,12 @@ button:active {
 .next-btn { background-color: #2196F3; }
 .save-btn { background-color: #4CAF50; }
 
-/* 1. Θερμοκρασία */
-.temp-container {
-    margin: 20px 0;
-}
+.temp-container { margin: 20px 0; }
 
 #tempIcon {
     font-size: 45px;
     display: block;
     margin-bottom: 10px;
-    transition: transform 0.2s;
 }
 
 input[type=range] {
@@ -75,7 +93,6 @@ input[type=range] {
     cursor: pointer;
 }
 
-/* 2. Διάθεση (Mood) */
 .mood-palette {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -96,7 +113,6 @@ input[type=range] {
     cursor: pointer;
 }
 
-/* 3. Ποτήρι Νερού */
 .glass-container {
     width: 100px;
     height: 130px;
@@ -129,9 +145,7 @@ input[type=range] {
     z-index: 2;
 }
 
-.steps-container {
-    margin-top: 15px;
-}
+.steps-container { margin-top: 15px; }
 
 .steps-container input {
     padding: 8px;
@@ -142,63 +156,46 @@ input[type=range] {
     text-align: center;
 }
 
-/* Στυλ Ιστορικού / Φιδάκια & Λίμνη */
-.month-selector {
-    margin-bottom: 15px;
-}
+.month-selector { margin-bottom: 10px; }
 
 .month-selector input {
-    padding: 6px 12px;
-    font-size: 14px;
-    border-radius: 8px;
+    padding: 5px 10px;
+    font-size: 13px;
+    border-radius: 6px;
     border: 1px solid #ccc;
 }
 
 .tracker-section {
-    margin: 8px 0;
+    margin: 5px 0;
     text-align: left;
 }
 
 .tracker-section h3 {
-    font-size: 13px;
-    margin-bottom: 4px;
+    font-size: 12px;
+    margin-bottom: 2px;
     color: #444;
 }
 
-.snake-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-    background: #eef2f5;
-    padding: 8px;
-    border-radius: 12px;
+canvas {
+    background: #f9f9fb;
+    border-radius: 8px;
+    display: block;
+    margin: 0 auto;
 }
 
-.snake-segment {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: #ddd;
+.pond-section {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 9px;
-    font-weight: bold;
-    color: #444;
-}
-
-/* Λίμνη με το βατραχάκι μέσα */
-.pond-container {
-    display: flex;
-    justify-content: center;
-    margin: 12px 0;
+    gap: 12px;
+    margin: 10px 0;
 }
 
 .pond {
-    width: 180px;
-    height: 85px;
+    width: 150px;
+    height: 70px;
     background-color: #bbdefb;
-    border-radius: 45px;
+    border-radius: 35px;
     position: relative;
     overflow: hidden;
     display: flex;
@@ -226,21 +223,36 @@ input[type=range] {
     gap: 1px;
 }
 
-.lily-pad {
-    font-size: 18px;
-}
+.lily-pad { font-size: 16px; }
 
 #pondText {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: bold;
     color: #0d47a1;
 }
 
+.speech-bubble {
+    background: #ffffff;
+    border: 2px solid #81c784;
+    padding: 6px 10px;
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 5px 7px 5px 0;
+    border-style: solid;
+    border-color: transparent #81c784 transparent transparent;
+}
+
 #frogSteps {
-    font-size: 10px;
+    font-size: 11px;
     font-weight: bold;
-    color: #1b5e20;
-    background: rgba(255, 255, 255, 0.8);
-    padding: 1px 6px;
-    border-radius: 10px;
+    color: #2e7d32;
 }
