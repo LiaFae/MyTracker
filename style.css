@@ -20,29 +20,44 @@ body {
 
 .auth-header {
     display: flex;
-    justify-content: flex-end;
-    margin-bottom: 10px;
+    justify-content: center;
+    margin-bottom: 15px;
+    width: 100%;
 }
 
-.auth-btn {
+.auth-btn.login {
+    display: inline-block !important;
+    background-color: #4285F4;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.auth-btn.logout { 
+    background-color: #e0e0e0; 
+    color: #333; 
     padding: 6px 12px;
     font-size: 12px;
     border-radius: 6px;
+    border: none;
+    cursor: pointer;
 }
-
-.auth-btn.login { background-color: #4285F4; }
-.auth-btn.logout { background-color: #e0e0e0; color: #333; }
 
 .user-info {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 12px;
+    font-size: 13px;
 }
 
 .user-info img {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
 }
 

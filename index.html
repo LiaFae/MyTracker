@@ -5,12 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyTracker</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Firebase Auth & Firestore SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
 </head>
 <body>
     <div class="container">
+        <!-- Google Auth Header - Το κουμπί φαίνεται πλέον ξεκάθαρα στην κορυφή -->
+        <div class="auth-header">
+            <div id="userInfo" class="user-info hidden">
+                <img id="userAvatar" src="" alt="Avatar">
+                <span id="userName"></span>
+                <button onclick="logoutGoogle()" class="auth-btn logout">Αποσύνδεση</button>
+            </div>
+            <button id="loginBtn" onclick="loginGoogle()" class="auth-btn login">Sign in with Google</button>
+        </div>
+
         <h1>MyTracker</h1>
 
-        <!-- Αρχική Οθόνη Επιλογών -->
+        <!-- Αρχική Οθόνη -->
         <div id="mainMenu" class="screen">
             <div class="actions">
                 <button onclick="showStep(1)">Καταγραφή Σήμερα</button>
@@ -29,7 +43,7 @@
             <button class="next-btn" onclick="showStep(2)">Επόμενο (Διάθεση) ➔</button>
         </div>
 
-        <!-- ΒΗΜΑ 2: Μετρητής Διάθεσης -->
+        <!-- ΒΗΜΑ 2: Διάθεση -->
         <div id="step2" class="screen hidden">
             <h2>2. Πώς νιώθεις σήμερα;</h2>
             <div class="mood-palette">
@@ -67,7 +81,7 @@
             </div>
         </div>
 
-        <!-- ΟΘΟΝΗ ΙΣΤΟΡΙΚΟΥ -->
+        <!-- ΙΣΤΟΡΙΚΟ -->
         <div id="historyScreen" class="screen hidden">
             <h2>Ιστορικό Μήνα</h2>
             
@@ -75,19 +89,16 @@
                 <input type="month" id="historyMonthPicker" onchange="renderHistory()">
             </div>
 
-            <!-- Φιδάκι Θερμοκρασίας -->
             <div class="tracker-section">
                 <h3>🌡️ Θερμοκρασίες</h3>
                 <canvas id="tempCanvas" width="280" height="90"></canvas>
             </div>
 
-            <!-- Φιδάκι Διάθεσης -->
             <div class="tracker-section">
                 <h3>😊 Διαθέσεις</h3>
                 <canvas id="moodCanvas" width="280" height="90"></canvas>
             </div>
 
-            <!-- Λίμνη & Βατραχάκι με συννεφάκι ομιλίας -->
             <div class="pond-section">
                 <div class="pond">
                     <div id="pondWater" class="pond-water"></div>
@@ -96,7 +107,6 @@
                         <span id="pondText">💧 0 L</span>
                     </div>
                 </div>
-                <!-- Συννεφάκι ομιλίας για το βατραχάκι -->
                 <div class="speech-bubble">
                     <span id="frogSteps">0 βήματα</span>
                 </div>
